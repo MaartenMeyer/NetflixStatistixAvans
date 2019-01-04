@@ -11,7 +11,8 @@ public class UserInterface implements Runnable{
     @Override
     public void run() {
         frame = new JFrame("Netflix Statistix");
-        frame.setPreferredSize(new Dimension(1000, 800));
+        frame.setPreferredSize(new Dimension(600, 500));
+        frame.setMinimumSize(new Dimension(500, 400));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         createComponents(frame.getContentPane());
@@ -24,5 +25,7 @@ public class UserInterface implements Runnable{
         container.setLayout(new BorderLayout());
 
         container.add(userInterfaceHandler.createInformationPanel(), BorderLayout.SOUTH);
+        container.add(userInterfaceHandler.createMenuPanel(), BorderLayout.WEST);
+        container.add(userInterfaceHandler.createMainPanel(), BorderLayout.CENTER);
     }
 }
