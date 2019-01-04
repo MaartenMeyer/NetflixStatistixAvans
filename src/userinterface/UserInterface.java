@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UserInterface implements Runnable{
+    private UserInterfaceHandler userInterfaceHandler = new UserInterfaceHandler();
+
     private JFrame frame;
 
     @Override
@@ -19,6 +21,8 @@ public class UserInterface implements Runnable{
     }
 
     private void createComponents(Container container){
+        container.setLayout(new BorderLayout());
 
+        container.add(userInterfaceHandler.createInformationPanel(), BorderLayout.SOUTH);
     }
 }
