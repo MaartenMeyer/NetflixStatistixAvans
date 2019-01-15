@@ -29,19 +29,12 @@ public class UserInterfaceHandler {
         menuPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         menuPanel.setPreferredSize(new Dimension(113, 700));
 
-        JButton item1 = createMenuButton("Overzicht 1");
-        JButton item2 = createMenuButton("Overzicht 2");
-        JButton item3 = createMenuButton("Overzicht 3");
-        JButton item4 = createMenuButton("Overzicht 4");
-        JButton item5 = createMenuButton("Overzicht 5");
-        JButton item6 = createMenuButton("Overzicht 6");
-
-        menuPanel.add(item1);
-        menuPanel.add(item2);
-        menuPanel.add(item3);
-        menuPanel.add(item4);
-        menuPanel.add(item5);
-        menuPanel.add(item6);
+        for(int i = 1; i <= 6; i++){
+            JButton button = createMenuButton("Overzicht " +String.valueOf(i));
+            button.setActionCommand("overview" +String.valueOf(i));
+            button.addActionListener(new UserInterfaceListener(button));
+            menuPanel.add(button);
+        }
 
         return menuPanel;
     }
