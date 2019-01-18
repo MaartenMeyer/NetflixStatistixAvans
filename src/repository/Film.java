@@ -1,7 +1,5 @@
 package repository;
 
-import java.util.Date;
-
 public class Film {
     private int filmId;
     private int programmeId;
