@@ -1,15 +1,17 @@
 package repository;
 
+import java.util.Date;
+
 public class Film {
     private int filmId;
     private int programmeId;
     private String title;
     private String language;
     private int ageIndication;
-    private int minutes;
+    private Date minutes;
     private String genre;
 
-    public Film(int filmId, int programmeId, String title, String language, int ageIndication, int minutes, String genre) {
+    public Film(int filmId, int programmeId, String title, String language, int ageIndication, Date minutes, String genre) {
         this.filmId = filmId;
         this.programmeId = programmeId;
         this.title = title;
@@ -60,11 +62,11 @@ public class Film {
         this.ageIndication = ageIndication;
     }
 
-    public int getMinutes() {
+    public Date getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(int minutes) {
+    public void setMinutes(Date minutes) {
         this.minutes = minutes;
     }
 
