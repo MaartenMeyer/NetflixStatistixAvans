@@ -1,24 +1,35 @@
 package userinterface;
 
+import connection.SqlConnection;
+import repository.FilmRepository;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UserInterfaceListener implements ActionListener {
-    private JButton button;
+    private SqlConnection sqlConnection;
+    private UserInterface userInterface;
 
-    public UserInterfaceListener(JButton button){
-        this.button = button;
+    private FilmRepository filmRepository;
+
+    public UserInterfaceListener(SqlConnection sqlConnection, UserInterface userInterface){
+        this.sqlConnection = sqlConnection;
+        this.userInterface = userInterface;
+        this.filmRepository = new FilmRepository(sqlConnection);
     }
 
 
+    /*
+     * Overview 1: all films
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
 
         switch (command){
             case "overview1":
-
+                    userInterface.setOverview(filmRepository.readAll());
                 break;
             case "overview2":
 
@@ -36,5 +47,7 @@ public class UserInterfaceListener implements ActionListener {
 
                 break;
         }
+
+        userInterface.update();
     }
 }

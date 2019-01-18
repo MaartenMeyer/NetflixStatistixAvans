@@ -1,11 +1,18 @@
 package userinterface;
 
+import connection.SqlConnection;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class UserInterfaceHandler {
+    private SqlConnection sqlConnection;
+    private UserInterface userInterface;
+    private JTextArea textArea;
 
-    public UserInterfaceHandler(){
+    public UserInterfaceHandler(SqlConnection sqlConnection, UserInterface userInterface){
+        this.sqlConnection = sqlConnection;
+        this.userInterface = userInterface;
 
     }
 
@@ -32,7 +39,7 @@ public class UserInterfaceHandler {
         for(int i = 1; i <= 6; i++){
             JButton button = createMenuButton("Overzicht " +String.valueOf(i));
             button.setActionCommand("overview" +String.valueOf(i));
-            button.addActionListener(new UserInterfaceListener(button));
+            button.addActionListener(new UserInterfaceListener(sqlConnection, userInterface));
             menuPanel.add(button);
         }
 
@@ -44,6 +51,10 @@ public class UserInterfaceHandler {
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         mainPanel.setPreferredSize(new Dimension(500, 700));
 
+        textArea = new JTextArea();
+
+        mainPanel.add(textArea);
+
         return mainPanel;
     }
 
@@ -53,6 +64,10 @@ public class UserInterfaceHandler {
         button.setBackground(Color.LIGHT_GRAY);
         button.setFont(new Font("TimesRoman", Font.PLAIN, 16));
         return button;
+    }
+
+    public JTextArea getTextArea(){
+        return textArea;
     }
 
 }

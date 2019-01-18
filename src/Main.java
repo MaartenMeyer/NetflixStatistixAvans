@@ -8,16 +8,18 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        //SwingUtilities.invokeLater(new UserInterface());
+
         SqlConnection connection = new SqlConnection();
         connection.connectDatabase("jdbc:sqlserver://ASUSTEK;databaseName=NetflixStatistix;integratedSecurity=true;");
+        SwingUtilities.invokeLater(new UserInterface(connection));
 
-        FilmRepository filmRepository = new FilmRepository(connection);
-
-        ArrayList<Film> list = filmRepository.readAll();
-        for(Film f : list){
-            System.out.println(f.toString());
-        }
+//
+//        FilmRepository filmRepository = new FilmRepository(connection);
+//
+//        ArrayList<Film> list = filmRepository.readAll();
+//        for(Film f : list){
+//            System.out.println(f.toString());
+//        }
 
 
 
