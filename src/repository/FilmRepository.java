@@ -26,7 +26,7 @@ public class FilmRepository {
                         rs.getString("Titel"),
                         rs.getString("Taal"),
                         rs.getInt("LeeftijdsIndicatie"),
-                        rs.getTime("Tijdsduur"),
+                        rs.getInt("Tijdsduur"),
                         rs.getString("Genre")));
             }
         }

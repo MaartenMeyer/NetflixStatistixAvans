@@ -8,10 +8,10 @@ public class Film {
     private String title;
     private String language;
     private int ageIndication;
-    private Date minutes;
+    private int minutes;
     private String genre;
 
-    public Film(int filmId, int programmeId, String title, String language, int ageIndication, Date minutes, String genre) {
+    public Film(int filmId, int programmeId, String title, String language, int ageIndication, int minutes, String genre) {
         this.filmId = filmId;
         this.programmeId = programmeId;
         this.title = title;
@@ -62,11 +62,11 @@ public class Film {
         this.ageIndication = ageIndication;
     }
 
-    public Date getMinutes() {
+    public int getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(Date minutes) {
+    public void setMinutes(int minutes) {
         this.minutes = minutes;
     }
 
