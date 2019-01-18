@@ -61,7 +61,10 @@ public class FilmRepository {
     }
 
     public DefaultTableModel arrayListToModel(ArrayList<Film> list){
-        DefaultTableModel model = new DefaultTableModel();
+        String[] columnNames = {"Film Id", "Programme Id", "Title", "Language", "Age Indication", "Minutes", "Genre"};
+
+
+        DefaultTableModel model = new DefaultTableModel(null, columnNames);
         model.setColumnCount(7);
 
         Object data[] = new Object[7];
