@@ -21,7 +21,7 @@ public class UserInterfaceListener implements ActionListener {
 
 
     /*
-     * Overview 1: all films
+     * Overview 4: Geeft de film met de langste Tijdsduur van alle films met Leeftijdsindicatie < 16
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -29,7 +29,7 @@ public class UserInterfaceListener implements ActionListener {
 
         switch (command){
             case "overview1":
-                    userInterface.setOverview(filmRepository.readAll());
+                    userInterface.setModel(filmRepository.arrayListToModel(filmRepository.readAll()));
                 break;
             case "overview2":
 
@@ -38,7 +38,7 @@ public class UserInterfaceListener implements ActionListener {
 
                 break;
             case "overview4":
-
+                    userInterface.setModel(filmRepository.arrayListToModel(filmRepository.longestFilmUnder16()));
                 break;
             case "overview5":
 

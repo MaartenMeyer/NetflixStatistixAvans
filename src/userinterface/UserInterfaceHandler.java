@@ -3,12 +3,16 @@ package userinterface;
 import connection.SqlConnection;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class UserInterfaceHandler {
     private SqlConnection sqlConnection;
     private UserInterface userInterface;
     private JTextArea textArea;
+
+    private JTable table;
+    private DefaultTableModel model;
 
     public UserInterfaceHandler(SqlConnection sqlConnection, UserInterface userInterface){
         this.sqlConnection = sqlConnection;
@@ -49,13 +53,17 @@ public class UserInterfaceHandler {
     public JPanel createMainPanel(){
         JPanel mainPanel = new JPanel();
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        mainPanel.setPreferredSize(new Dimension(500, 700));
+        mainPanel.setPreferredSize(new Dimension(1260, 410));
 
-        textArea = new JTextArea();
-        textArea.setFont(new Font("TimesRoman", Font.PLAIN, 18));
-        textArea.setBackground(Color.decode("#EEEEEE"));
+        table = new JTable();
+        model = new DefaultTableModel();
 
-        mainPanel.add(textArea);
+        table.setModel(model);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(1260, 410));
+
+        mainPanel.add(scrollPane);
 
         return mainPanel;
     }
@@ -68,8 +76,12 @@ public class UserInterfaceHandler {
         return button;
     }
 
-    public JTextArea getTextArea(){
-        return textArea;
+    public void setModel(DefaultTableModel m){
+        table.setModel(m);
+    }
+
+    public JTable getTable(){
+        return table;
     }
 
 }

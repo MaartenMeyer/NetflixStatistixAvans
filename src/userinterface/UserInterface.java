@@ -4,6 +4,7 @@ import connection.SqlConnection;
 import repository.Film;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class UserInterface implements Runnable{
     public void run() {
         frame = new JFrame("Netflix Statistix");
         frame.setPreferredSize(new Dimension(1400, 500));
-        frame.setMinimumSize(new Dimension(500, 400));
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         createComponents(frame.getContentPane());
@@ -39,13 +40,11 @@ public class UserInterface implements Runnable{
         container.add(userInterfaceHandler.createMainPanel(), BorderLayout.CENTER);
     }
 
-    public void setOverview(ArrayList<Film> list){
-        JTextArea textArea = userInterfaceHandler.getTextArea();
-        textArea.setText("");
-        for(Film film : list){
-            textArea.append(film.toString() + "\n");
-        }
+    public void setModel(DefaultTableModel m){
+        DefaultTableModel model = (DefaultTableModel) userInterfaceHandler.getTable().getModel();
+        model.setRowCount(0);
 
+        userInterfaceHandler.getTable().setModel(m);
     }
 
     public void update(){
