@@ -52,6 +52,8 @@ public class UserInterfaceHandler {
         mainPanel.setPreferredSize(new Dimension(500, 700));
 
         textArea = new JTextArea();
+        textArea.setFont(new Font("TimesRoman", Font.PLAIN, 18));
+        textArea.setBackground(Color.decode("#EEEEEE"));
 
         mainPanel.add(textArea);
 

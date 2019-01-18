@@ -12,6 +12,10 @@ public class FilmRepository {
         this.sqlConnection = sqlConnection;
     }
 
+    /*
+     *
+     * Returns an ArrayList of Film objects
+     */
     public ArrayList<Film> readAll() {
         ArrayList<Film> filmList = new ArrayList<>();
         try {
@@ -31,4 +35,5 @@ public class FilmRepository {
         }
         return filmList;
     }
+
 }
