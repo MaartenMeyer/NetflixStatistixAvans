@@ -13,9 +13,9 @@ Woonplaats nvarchar(40) NOT NULL
 );
 
 CREATE TABLE Profiel(
+AbonnementId int CONSTRAINT Profiel_FK REFERENCES Abonnement(AbonnementId) ON DELETE CASCADE ON UPDATE CASCADE,
 Profielnaam nvarchar(40) NOT NULL,
 Geboortedatum date NOT NULL,
-AbonnementId int CONSTRAINT Profiel_FK REFERENCES Abonnement(AbonnementId) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (Profielnaam, AbonnementId)
 );
 
@@ -33,7 +33,7 @@ Taal nvarchar(40) NOT NULL,
 LeeftijdsIndicatie int NOT NULL,
 Tijdsduur int NOT NULL,
 Genre nvarchar(40) NOT NULL,
-FOREIGN KEY(ProgrammaId,Titel) REFERENCES Programma(ProgrammaId,Titel) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(ProgrammaId, Titel) REFERENCES Programma(ProgrammaId, Titel) ON DELETE CASCADE ON UPDATE CASCADE,
 );
 
 CREATE TABLE Serie(
@@ -54,17 +54,33 @@ FOREIGN KEY(ProgrammaId,Titel) REFERENCES Programma(ProgrammaId,Titel) ON DELETE
 );
 
 CREATE TABLE BekekenProgramma(
-Percentage int NOT NULL,
 Profielnaam nvarchar(40) NOT NULL,
 AbonnementId int NOT NULL,
-LaatstBekeken datetime NOT NULL,
 ProgrammaId int NOT NULL,
 Titel nvarchar(40) NOT NULL,
+LaatstBekeken datetime NOT NULL,
+Percentage int NOT NULL,
 FOREIGN KEY(Profielnaam,AbonnementId) REFERENCES Profiel(Profielnaam,AbonnementId) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY(ProgrammaId,Titel) REFERENCES Programma(ProgrammaId,Titel) ON DELETE CASCADE ON UPDATE CASCADE,
-PRIMARY KEY(Profielnaam,AbonnementId,ProgrammaId)
 );
 
+--/ 
+INSERT INTO Abonnement (AbonnementId, Naam, Straat, Huisnummer, Woonplaats)
+VALUES 
+('1', 'Jansen', 'Zaling', '127', 'Papendrecht' ),
+('2', 'Vos', 'Kattenburg', '44', 'Nijmegen' ),
+('3', 'de Boer', 'Hoogweg', '33', 'Breda' ),
+('4', 'Visser', 'Kattenburg', '44', 'Nijmegen' );
+
+INSERT INTO Profiel (AbonnementId, Profielnaam, Geboortedatum)
+VALUES 
+('1', 'Karel', '1962-05-12' ),
+('1', 'Maartje', '1964-06-03' ),
+('1', 'Huib', '1992-08-05' ),
+('2', 'Pepper', '1962-07-05' ),
+('3', 'Dingo', '1962-05-05' ),
+('3', 'Piet', '1982-07-12' ),
+('4', 'Jan', '1962-01-14' );
 
 
 INSERT INTO Programma (ProgrammaId, Titel)
@@ -199,3 +215,10 @@ INSERT INTO Aflevering (AfleveringId, ProgrammaId, Serie, Titel, Tijdsduur) VALU
 ('0218', '3108', 'Fargo', 'Loplop', '68'),
 ('0219', '3109', 'Fargo', 'The Castle', '68'),
 ('0220', '3110', 'Fargo', 'Palindrome', '68');
+
+INSERT INTO BekekenProgramma (Profielnaam, AbonnementId, ProgrammaId, Titel, LaatstBekeken, Percentage) VALUES
+('Karel', '1', '2009', 'Bit by a Dead Bee', '2019-01-19 11:15:00', '60'),
+('Karel', '1', '8011', 'Andy Warhols Dracula', '2019-01-19 13:40:00', '73'),
+('Karel', '1', '8012', 'Ober', '2019-01-18 17:15:00', '40');
+
+

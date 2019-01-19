@@ -60,6 +60,37 @@ public class FilmRepository {
         return filmList;
     }
 
+    /*
+     * Geeft de film met de langste Tijdsduur van alle films met Leeftijdsindicatie < 16
+     */
+    public ArrayList<Film> filmsWatchedBySelectedSubscription(String subscriptionId) {
+        ArrayList<Film> filmList = new ArrayList<>();
+        try {
+            ResultSet rs = sqlConnection.executeSql("SELECT DISTINCT Film.*\n" +
+                    "FROM Film\n" +
+                    "INNER JOIN BekekenProgramma\n" +
+                    "ON BekekenProgramma.ProgrammaId = Film.ProgrammaId\n" +
+                    "INNER JOIN Abonnement\n" +
+                    "ON Abonnement.AbonnementId = BekekenProgramma.AbonnementId\n" +
+                    "INNER JOIN Profiel\n" +
+                    "ON Profiel.AbonnementId = Abonnement.AbonnementId\n" +
+                    "WHERE Abonnement.AbonnementId = '"+subscriptionId+"'");
+            while(rs.next()) {
+                filmList.add(new Film(rs.getInt("FilmId"),
+                        rs.getInt("ProgrammaId"),
+                        rs.getString("Titel"),
+                        rs.getString("Taal"),
+                        rs.getInt("LeeftijdsIndicatie"),
+                        rs.getInt("Tijdsduur"),
+                        rs.getString("Genre")));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return filmList;
+    }
+
     public DefaultTableModel arrayListToModel(ArrayList<Film> list){
         String[] columnNames = {"Film Id", "Programme Id", "Title", "Language", "Age Indication", "Minutes", "Genre"};
 

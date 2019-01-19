@@ -3,6 +3,7 @@ package userinterface;
 import connection.SqlConnection;
 import repository.EpisodeRepository;
 import repository.FilmRepository;
+import repository.SubscriptionRepository;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,12 +15,14 @@ public class UserInterfaceListener implements ActionListener {
 
     private FilmRepository filmRepository;
     private EpisodeRepository episodeRepository;
+    private SubscriptionRepository subscriptionRepository;
 
     public UserInterfaceListener(SqlConnection sqlConnection, UserInterface userInterface){
         this.sqlConnection = sqlConnection;
         this.userInterface = userInterface;
         this.filmRepository = new FilmRepository(sqlConnection);
         this.episodeRepository = new EpisodeRepository(sqlConnection);
+        this.subscriptionRepository = new SubscriptionRepository(sqlConnection);
     }
 
 
@@ -32,18 +35,20 @@ public class UserInterfaceListener implements ActionListener {
 
         switch (command){
             case "overview1":
-                    userInterface.setModel(filmRepository.arrayListToModel(filmRepository.readAll()));
+
+
                 break;
             case "overview2":
-                userInterface.setModel(episodeRepository.arrayListToModel(episodeRepository.readAll()));
+
                 break;
             case "overview3":
-
+                    userInterface.setModel(filmRepository.arrayListToModel(filmRepository.filmsWatchedBySelectedSubscription("1")));
                 break;
             case "overview4":
                     userInterface.setModel(filmRepository.arrayListToModel(filmRepository.longestFilmUnder16()));
                 break;
             case "overview5":
+                    userInterface.setModel(subscriptionRepository.arrayListToModel(subscriptionRepository.subscriptionsWithOnly1Profile()));
 
                 break;
             case "overview6":
