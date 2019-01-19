@@ -2,6 +2,7 @@ package repository;
 
 import connection.SqlConnection;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class FilmRepository {
     }
 
     /*
-     * Geeft de film met de langste Tijdsduur van alle films met Leeftijdsindicatie < 16
+     *
      */
     public ArrayList<Film> filmsWatchedBySelectedSubscription(String subscriptionId) {
         ArrayList<Film> filmList = new ArrayList<>();
@@ -127,6 +128,16 @@ public class FilmRepository {
             data[0] = film.getFilmId();
             data[1] = film.getProgrammeId();
             model.addRow(data);
+        }
+
+        return model;
+    }
+
+    public DefaultComboBoxModel arrayListToComboBoxModel(ArrayList<Film> list){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+
+        for(int i = 0; i < list.size(); i++){
+            model.addElement(list.get(i).getTitle());
         }
 
         return model;

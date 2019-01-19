@@ -47,6 +47,13 @@ public class UserInterface implements Runnable{
         userInterfaceHandler.getTable().setModel(m);
     }
 
+    public void setComboBoxModel(DefaultComboBoxModel m){
+        DefaultComboBoxModel model = (DefaultComboBoxModel) userInterfaceHandler.getComboBox().getModel();
+        model.removeAllElements();
+
+        userInterfaceHandler.getComboBox().setModel(m);
+    }
+
     public void update(){
         frame.repaint();
     }

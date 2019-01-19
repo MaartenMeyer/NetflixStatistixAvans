@@ -6,14 +6,15 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class UserInterfaceHandler {
     private SqlConnection sqlConnection;
     private UserInterface userInterface;
-    private JTextArea textArea;
 
     private JTable table;
-    private DefaultTableModel model;
+    private JComboBox comboBox;
 
     public UserInterfaceHandler(SqlConnection sqlConnection, UserInterface userInterface){
         this.sqlConnection = sqlConnection;
@@ -55,19 +56,21 @@ public class UserInterfaceHandler {
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(new LineBorder(Color.black));
 
-        JComboBox comboBox = new JComboBox();
+        comboBox = new JComboBox();
         comboBox.setPreferredSize(new Dimension(200, 30));
+        comboBox.setActionCommand("comboBox");
+        comboBox.addActionListener(new UserInterfaceListener(sqlConnection, userInterface, comboBox));
 
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        topPanel.add(new JLabel("Film name", SwingConstants.CENTER));
+        topPanel.add(new JLabel("Title", SwingConstants.CENTER));
         topPanel.add(comboBox);
 
         table = new JTable();
-        model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel();
         table.setModel(model);
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(1200, 350));
+        scrollPane.setPreferredSize(new Dimension(1260, 350));
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(scrollPane);
@@ -89,6 +92,10 @@ public class UserInterfaceHandler {
 
     public JTable getTable(){
         return table;
+    }
+
+    public JComboBox getComboBox(){
+        return comboBox;
     }
 
 }

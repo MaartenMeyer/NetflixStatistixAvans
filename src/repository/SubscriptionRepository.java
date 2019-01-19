@@ -2,6 +2,7 @@ package repository;
 
 import connection.SqlConnection;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -74,5 +75,15 @@ public class SubscriptionRepository {
 
         return model;
 
+    }
+
+    public DefaultComboBoxModel arrayListToComboBoxModel(ArrayList<Subscription> list){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+
+        for(int i = 0; i < list.size(); i++){
+            model.addElement(list.get(i).getSubscriptionId());
+        }
+
+        return model;
     }
 }
