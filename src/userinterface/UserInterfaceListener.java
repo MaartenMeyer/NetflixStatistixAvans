@@ -55,7 +55,7 @@ public class UserInterfaceListener implements ActionListener {
 
                 break;
             case "overview6":
-                    userInterface.setModel(viewedProgrammeRepository.arrayListToModel(viewedProgrammeRepository.readAll()));
+                    userInterface.setModel(viewedProgrammeRepository.arrayListToModel(viewedProgrammeRepository.numberOfUsersSeenFor100Percent()));
                 break;
         }
 

@@ -3,6 +3,7 @@ package userinterface;
 import connection.SqlConnection;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
@@ -51,19 +52,29 @@ public class UserInterfaceHandler {
     }
 
     public JPanel createMainPanel(){
-        JPanel mainPanel = new JPanel();
-        mainPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        mainPanel.setPreferredSize(new Dimension(1260, 410));
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBorder(new LineBorder(Color.black));
+
+        JComboBox comboBox = new JComboBox();
+        comboBox.setPreferredSize(new Dimension(200, 30));
+
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        topPanel.add(new JLabel("Film name", SwingConstants.CENTER));
+        topPanel.add(comboBox);
 
         table = new JTable();
         model = new DefaultTableModel();
-
         table.setModel(model);
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(1260, 410));
+        scrollPane.setPreferredSize(new Dimension(1200, 350));
 
-        mainPanel.add(scrollPane);
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(scrollPane);
+
+
+        mainPanel.add(topPanel, BorderLayout.NORTH);
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         return mainPanel;
     }
@@ -74,10 +85,6 @@ public class UserInterfaceHandler {
         button.setBackground(Color.LIGHT_GRAY);
         button.setFont(new Font("TimesRoman", Font.PLAIN, 16));
         return button;
-    }
-
-    public void setModel(DefaultTableModel m){
-        table.setModel(m);
     }
 
     public JTable getTable(){
