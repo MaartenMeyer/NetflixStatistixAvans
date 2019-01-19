@@ -219,6 +219,11 @@ INSERT INTO Aflevering (AfleveringId, ProgrammaId, Serie, Titel, Tijdsduur) VALU
 INSERT INTO BekekenProgramma (Profielnaam, AbonnementId, ProgrammaId, Titel, LaatstBekeken, Percentage) VALUES
 ('Karel', '1', '2009', 'Bit by a Dead Bee', '2019-01-19 11:15:00', '60'),
 ('Karel', '1', '8011', 'Andy Warhols Dracula', '2019-01-19 13:40:00', '73'),
-('Karel', '1', '8012', 'Ober', '2019-01-18 17:15:00', '40');
+('Karel', '1', '8012', 'Ober', '2019-01-18 17:15:00', '40'),
+('Maartje', '1', '8014', 'Der Untergang', '2018-01-18 17:15:00', '100'),
+('Jan', '4', '8014', 'Der Untergang', '2018-02-18 18:15:00', '100');
+
+
+
 
 

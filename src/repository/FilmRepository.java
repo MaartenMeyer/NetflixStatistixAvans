@@ -112,7 +112,24 @@ public class FilmRepository {
         }
 
         return model;
+    }
 
+    public DefaultTableModel arrayListToModel2(ArrayList<Film> list){
+        String[] columnNames = {"Film Id", "Number of users seen for 100%"};
+
+
+        DefaultTableModel model = new DefaultTableModel(null, columnNames);
+        model.setColumnCount(2);
+
+        Object data[] = new Object[2];
+        for(int i = 0; i < list.size(); i++){
+            Film film = list.get(i);
+            data[0] = film.getFilmId();
+            data[1] = film.getProgrammeId();
+            model.addRow(data);
+        }
+
+        return model;
     }
 
 

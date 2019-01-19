@@ -15,7 +15,7 @@ public class ProfileRepository {
     public ArrayList<Profile> readAll() {
         ArrayList<Profile> profileList = new ArrayList<>();
         try {
-            ResultSet rs = sqlConnection.executeSql("SELECT * FROM Film");
+            ResultSet rs = sqlConnection.executeSql("SELECT * FROM Profiel");
             while(rs.next()) {
                 profileList.add(new Profile(rs.getInt("AbonnementId"),
                         rs.getString("Profielnaam"),

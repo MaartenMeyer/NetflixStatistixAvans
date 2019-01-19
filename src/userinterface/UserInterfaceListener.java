@@ -4,6 +4,7 @@ import connection.SqlConnection;
 import repository.EpisodeRepository;
 import repository.FilmRepository;
 import repository.SubscriptionRepository;
+import repository.ViewedProgrammeRepository;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ public class UserInterfaceListener implements ActionListener {
     private FilmRepository filmRepository;
     private EpisodeRepository episodeRepository;
     private SubscriptionRepository subscriptionRepository;
+    private ViewedProgrammeRepository viewedProgrammeRepository;
 
     public UserInterfaceListener(SqlConnection sqlConnection, UserInterface userInterface){
         this.sqlConnection = sqlConnection;
@@ -23,6 +25,7 @@ public class UserInterfaceListener implements ActionListener {
         this.filmRepository = new FilmRepository(sqlConnection);
         this.episodeRepository = new EpisodeRepository(sqlConnection);
         this.subscriptionRepository = new SubscriptionRepository(sqlConnection);
+        this.viewedProgrammeRepository = new ViewedProgrammeRepository(sqlConnection);
     }
 
 
@@ -52,7 +55,7 @@ public class UserInterfaceListener implements ActionListener {
 
                 break;
             case "overview6":
-
+                    userInterface.setModel(viewedProgrammeRepository.arrayListToModel(viewedProgrammeRepository.readAll()));
                 break;
         }
 
