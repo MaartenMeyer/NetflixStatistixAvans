@@ -1,6 +1,7 @@
 package userinterface;
 
 import connection.SqlConnection;
+import repository.EpisodeRepository;
 import repository.FilmRepository;
 
 import javax.swing.*;
@@ -12,11 +13,13 @@ public class UserInterfaceListener implements ActionListener {
     private UserInterface userInterface;
 
     private FilmRepository filmRepository;
+    private EpisodeRepository episodeRepository;
 
     public UserInterfaceListener(SqlConnection sqlConnection, UserInterface userInterface){
         this.sqlConnection = sqlConnection;
         this.userInterface = userInterface;
         this.filmRepository = new FilmRepository(sqlConnection);
+        this.episodeRepository = new EpisodeRepository(sqlConnection);
     }
 
 
@@ -32,7 +35,7 @@ public class UserInterfaceListener implements ActionListener {
                     userInterface.setModel(filmRepository.arrayListToModel(filmRepository.readAll()));
                 break;
             case "overview2":
-
+                userInterface.setModel(episodeRepository.arrayListToModel(episodeRepository.readAll()));
                 break;
             case "overview3":
 

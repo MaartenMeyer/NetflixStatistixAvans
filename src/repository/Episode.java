@@ -1,26 +1,18 @@
 package repository;
 
 public class Episode {
-    private int programmeId;
     private int episodeId;
+    private int programmeId;
     private String serie;
     private String title;
     private int minutes;
 
-    public Episode(int programmeId, int episodeId, String serie, String title, int minutes) {
-        this.programmeId = programmeId;
+    public Episode(int episodeId, int programmeId, String serie, String title, int minutes) {
         this.episodeId = episodeId;
+        this.programmeId = programmeId;
         this.serie = serie;
         this.title = title;
         this.minutes = minutes;
-    }
-
-    public int getProgrammeId() {
-        return programmeId;
-    }
-
-    public void setProgrammeId(int programmeId) {
-        this.programmeId = programmeId;
     }
 
     public int getEpisodeId() {
@@ -29,6 +21,14 @@ public class Episode {
 
     public void setEpisodeId(int episodeId) {
         this.episodeId = episodeId;
+    }
+
+    public int getProgrammeId() {
+        return programmeId;
+    }
+
+    public void setProgrammeId(int programmeId) {
+        this.programmeId = programmeId;
     }
 
     public String getSerie() {

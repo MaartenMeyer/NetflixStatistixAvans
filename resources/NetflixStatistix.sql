@@ -45,12 +45,12 @@ LijktOp nvarchar(40),
 );
 
 CREATE TABLE Aflevering(
-AfleveringID int NOT NULL PRIMARY KEY,
-ProgrammaID int NOT NULL ,
+AfleveringId int NOT NULL PRIMARY KEY,
+ProgrammaId int NOT NULL ,
 Serie nvarchar(40) CONSTRAINT Serie_FK REFERENCES Serie(Titel) ON DELETE CASCADE ON UPDATE CASCADE,
 Titel nvarchar(40) NOT NULL,		 	
 Tijdsduur int NOT NULL,
-FOREIGN KEY(ProgrammaID,Titel) REFERENCES Programma(ProgrammaID,Titel) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(ProgrammaId,Titel) REFERENCES Programma(ProgrammaId,Titel) ON DELETE CASCADE ON UPDATE CASCADE,
 );
 
 CREATE TABLE BekekenProgramma(
@@ -67,7 +67,7 @@ PRIMARY KEY(Profielnaam,AbonnementId,ProgrammaId)
 
 
 
-INSERT INTO Programma (ProgrammaID, Titel)
+INSERT INTO Programma (ProgrammaId, Titel)
 VALUES 
 ('1001', 'A Study in Pink'),
 ('1002', 'The Blind Banker'),
@@ -147,7 +147,7 @@ INSERT INTO Serie (Titel, LeeftijdsIndicatie, Taal, Genre, LijktOp) VALUES
 ('Breaking Bad', '16', 'Engels-Amerikaans', 'Spanning', 'Fargo'),
 ('Fargo', '16', 'Engels-Amerikaans', 'Spanning', 'Breaking Bad');
 
-INSERT INTO Aflevering (AfleveringId, ProgrammaID, Serie, Titel, Tijdsduur) VALUES 
+INSERT INTO Aflevering (AfleveringId, ProgrammaId, Serie, Titel, Tijdsduur) VALUES 
 ('0001', '1001', 'Sherlock', 'A Study in Pink', '88'),
 ('0002', '1002', 'Sherlock', 'The Blind Banker', '88'),
 ('0003', '1003', 'Sherlock', 'The Great Game', '88'),
